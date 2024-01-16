@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/participation/new.css}" href="/styles/participation/new.css" rel="stylesheet" type="text/css"/>
+
+    <title>New Participation</title>
+</head>
+<body>
+<h1>New Participation</h1>
+<form th:method="POST" th:action="@{/participation}" th:object="${participation}">
+    <label for="player_id">Player ID:</label><br>
+    <input type="text" id="player_id" th:field="*{player_id}" required><br>
+    <label for="game_id">Game ID:</label><br>
+    <input type="text" id="game_id" th:field="*{game_id}" required><br>
+    <label for="hours_played">Hours Played:</label><br>
+    <input type="number" id="hours_played" th:field="*{hours_played}" required><br>
+    <label for="join_date">Join Date:</label><br>
+    <input type="date" id="join_date" th:field="*{join_date}" required><br>
+    <label for="is_banned">Is Banned:</label><br>
+    <input type="checkbox" id="is_banned" th:field="*{is_banned}"><br>
+    <label for="kills">Kills:</label><br>
+    <input type="number" id="kills" th:field="*{kills}" required><br>
+    <label for="death">Death:</label><br>
+    <input type="number" id="death" th:field="*{death}" required><br>
+    <label for="rank">Rank:</label><br>
+    <input type="number" id="rank" th:field="*{rank}" required><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

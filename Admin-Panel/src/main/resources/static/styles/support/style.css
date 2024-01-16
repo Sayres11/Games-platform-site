@@ -1,0 +1,117 @@
+body {
+    background-color: #121212; /* Dark background */
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.login-container {
+    padding: 20px;
+    background-color: #262626; /* Slightly lighter black */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    width: 300px; /* Adjust width as needed */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+
+
+.form-control {
+    width: 90%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+}
+
+.submit-button {
+    width: 30%;
+    background-color: #e74c3c; /* Red color for the button */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #c0392b; /* Darker red for hover */
+}
+
+.error-message, .logout-message {
+    color: #e74c3c; /* Red color for messages */
+    padding: 10px 0;
+    text-align: center;
+}
+.forgot-password-link {
+    display: block; /* or inline-block, depending on your design */
+    margin-top: 10px;
+    color: #e74c3c; /* or any color you prefer */
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+
+
+.support-container {
+    background-color: #262626; /* Darker containers for contrast */
+    color: #fff;
+    border-radius: 8px;
+    max-width: 500px;
+    padding: 20px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+.form-title {
+    margin-bottom: 15px;
+    color: #e74c3c; /* Red color for titles */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 90%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+
+.submit-button {
+    background-color: #e74c3c; /* Red accent color for the submit button */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #c0392b; /* Darker red for the hover state */
+}

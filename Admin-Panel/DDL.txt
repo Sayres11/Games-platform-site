@@ -1,0 +1,52 @@
+create table Games
+(
+    game_id   INTEGER      not null
+        constraint Games_pk
+            primary key autoincrement,
+    game_name varchar(255) not null
+);
+
+create table Players
+(
+    player_id     INTEGER                not null
+        constraint Players_pk
+            primary key autoincrement,
+    player_name   varchar(82)            not null,
+    email         varchar(82)            not null,
+    date_of_birth date                   not null,
+    created_at    datetime               not null,
+    last_modified datetime               not null,
+    location      varchar(82)            not null,
+    password      varchar(82)            not null,
+    role          varcher default 'user' not null
+);
+
+create table Game_Participation
+(
+    Participation_id INTEGER not null
+        constraint Game_Participation_pk
+            primary key autoincrement,
+    player_id        int     not null
+        constraint Game_Participation_Players
+            references Players,
+    game_id          int     not null
+        constraint Participation_Games
+            references Games,
+    hours_played     int     not null,
+    join_date        date    not null,
+    is_banned        boolean not null,
+    kills            int     not null,
+    death            int     not null,
+    rank             int     not null
+);
+
+create table Linked_Accounts
+(
+    linked_id       int         not null
+        constraint Linked_Accounts_pk
+            primary key,
+    player_id       int         not null
+        constraint Linked_Accounts_Players
+            references Players,
+    account_details varchar(82) not null
+);

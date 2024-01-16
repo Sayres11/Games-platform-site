@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/participation/new.css}" href="/styles/participation/new.css" rel="stylesheet" type="text/css"/>
+    <title>new user</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <label for="player_name">Enter name:</label>
+    <input type="text" th:field="*{player_name}" id="player_name" required/>
+    <p style="color:red" th:if="${#fields.hasErrors('player_name')}" th:errors="*{player_name}">Incorrect name</p>
+    <label for="email">Enter email:</label>
+    <input type="email" th:field="*{email}" id="email" required />
+    <p style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect email</p>
+    <label for="date_of_birth">Enter Birth date:</label>
+    <input type="date" th:field="*{date_of_birth}" id="date_of_birth" required />
+    <p style="color:red" th:if="${#fields.hasErrors('date_of_birth')}" th:errors="*{date_of_birth}">Incorrect date</p>
+    <input type="hidden" th:field="*{password}" th:value="432452" id="password"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+</body>
+</html>

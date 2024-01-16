@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Server List</title>
+    <link href="/styles/cs/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="logo-container">
+            <img th:src="@{/styles/aaaaa.png}" th:class="logo" th:alt="logo"/>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/servers" class="nav-link">Servers</a></li>
+                <li class="nav-item"><a href="/stats" class="nav-link ">Stats</a></li>
+                <li class="nav-item"><a href="/support" class="nav-link">Support</a></li>
+                <li class="nav-item"><a href="/users" class="nav-link"
+                                        sec:authorize="hasAuthority('ROLE_ADMIN')">Admin</a></li>
+                <li sec:authentication="name"></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a class="btn btn-login" href="/login" sec:authorize="!isAuthenticated()">Log In</a>
+            <a class="btn btn-login" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+            <a sec:authorize="isAuthenticated()" th:text="'Welcome ' + ${#authentication.name}"> </a>
+            <form action="/logout" method="post" sec:authorize="isAuthenticated()">
+                <button type="submit" class="btn-login">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="content-container">
+    <main class="main-content">
+        <div class="game-selection">
+        </div>
+        <section class="news-section">
+            <h2 class="section-title">CS2 Latest News</h2>
+            <div class="news-container">
+                <article class="news-item">
+                    <h3 class="news-title">CS 2 REALESE</h3>
+                    <p class="news-summary">THE NEXT ERA OF COUNTER-STRIKE IS HERE!
+                        Counter-Strike 2 is the largest technical leap forward in Counter-Strike’s history, ensuring new
+                        features and updates for years to come.
+
+                        Counter-Strike 2 is a free upgrade to CS:GO. So build your loadout, hone your skills, and
+                        prepare yourself for what’s next!
+
+                        Read on to learn more about some of the features of Counter-Strike 2.</p>
+                    <a href="#" class="news-link">Read more...</a>
+                </article>
+            </div>
+        </section>
+    </main>
+    <aside class="sidebar">
+        <section class="best-players-section">
+            <h2 class="section-title">Best Players in CS2</h2>
+            <ul class="best-players-list">
+                <li th:each="players : ${player}" class="player">
+                    <span class="player-name" th:text="${players.getPlayer_name()}"></span>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Server List</title>
+    <!--   <link th:href="@{/styles/homepage.css}" href="/styles/homepage.css" rel="stylesheet" type="text/css"/>-->
+    <link href="/styles/homepage.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="logo-container">
+            <img th:src="@{/styles/aaaaa.png}" th:class="logo" th:alt="logo"/>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/servers" class="nav-link">Servers</a></li>
+                <li class="nav-item"><a href="/stats" class="nav-link ">Stats</a></li>
+                <li class="nav-item"><a href="/support" class="nav-link">Support</a></li>
+                <li class="nav-item"><a href="/users" class="nav-link"
+                                        sec:authorize="hasAuthority('ROLE_ADMIN')">Admin</a></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a class="btn btn-login" href="/login" sec:authorize="!isAuthenticated()">Log In</a>
+            <a class="btn btn-login" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+            <a sec:authorize="isAuthenticated()" th:text="'Welcome ' + ${#authentication.name}"> </a>
+            <form action="/logout" method="post" sec:authorize="isAuthenticated()">
+                <button type="submit" class="btn-login">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="content-container">
+    <main class="main-content">
+        <div class="game-selection">
+            <a class="game-button" data-game="game1" href="/cs">
+                <img th:src="@{/styles/cs2-logo.png}" alt="CS2" class="game-icon">
+                CS2
+            </a>
+            <a class="game-button" data-game="game2" href="/lol">
+                <img th:src="@{/styles/lol.png}" alt="LoL" class="game-icon">
+                LOL
+            </a>
+            <a class="game-button" data-game="game3" href="/valorant">
+                <img th:src="@{/styles/valorant-logo.png}" alt="Valorant" class="game-icon">
+                VALORANT
+            </a>
+        </div>
+
+        <section class="news-section">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-container">
+                <article class="news-item">
+                    <h3 class="news-title">New Server Launch</h3>
+                    <p class="news-summary">We're excited to announce the launch of our new server! Come and join the
+                        fun.</p>
+
+                    <a href="#" class="news-link">Read more...</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <aside class="sidebar">
+        <section class="best-players-section">
+            <h2 class="section-title">Best Players</h2>
+            <ul class="best-players-list">
+                <li th:each="players, stat : ${user}" class="player">
+                    <span class="player-name" th:text="${players.getPlayer_name()}"></span>
+                    <span class="game-name" th:text="${game[stat.index].getGame_name()}"></span>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</div>
+</body>
+</html>

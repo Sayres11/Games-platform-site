@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Game Management</title>
+    <link th:href="@{/styles/Game/index.css}" href="/styles/Game/index.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="admin-header">
+    <h1>Admin Panel</h1>
+</header>
+<nav class="admin-nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="/" class="nav-link">Main</a></li>
+
+        <li class="nav-item"><a href="/users" class="nav-link">Players</a></li>
+        <li class="nav-item"><a href="/games" class="nav-link">Games</a></li>
+        <li class="nav-item"><a href="/participation" class="nav-link">Participation</a></li>
+    </ul>
+
+</nav>
+<main>
+    <section class="user-list">
+        <a th:href="@{/games/new}" class="create-new">Create New Game</a>
+
+        <table class="users-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody th:each="game : ${game}">
+            <tr>
+                <td th:text="${game.getGame_id()}"></td>
+                <td th:text="${game.getGame_name()}"></td>
+                <td>
+                    <a th:href="@{/games/{id}(id=${game.getGame_id()})}" class="button-style">Edit</a>
+                    <form th:action="@{/games/{id}(id=${game.getGame_id()})}" method="post" onsubmit="return confirm('Are you sure?');">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="button-style">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - User Management</title>
+    <link th:href="@{/styles/user/index.css}" href="/styles/user/index.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="admin-header">
+    <h1>Admin Panel</h1>
+</header>
+<nav class="admin-nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="/" class="nav-link">Main</a></li>
+        <li class="nav-item"><a href="/users" class="nav-link">Players</a></li>
+        <li class="nav-item"><a href="/games" class="nav-link">Games</a></li>
+        <li class="nav-item"><a href="/participation" class="nav-link">Participation</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="user-list">
+        <a th:href="@{/users/new}" class="create-new">Create New User</a>
+        <table class="users-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Created</th>
+                <th>Last Modified</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.getPlayer_id()}"></td>
+                <td th:text="${user.getPlayer_name()}"></td>
+                <td th:text="${user.getLocation()}"></td>
+                <td th:text="${user.getCreated_at()}"></td>
+                <td th:text="${user.getLast_modified()}"></td>
+                <td>
+                    <a th:href="@{/users/{id}(id=${user.getPlayer_id()})}" class="button-style">Edit</a>
+                    <form th:action="@{/users/{id}(id=${user.getPlayer_id()})}" method="post"
+                          onsubmit="return confirm('Are you sure?');" class="delete-form">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="button-style">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/users(page=${page - 1})}"
+           th:disabled="${page == 0}"
+           class="button-style">
+            Previous
+        </a>
+
+        |
+        <a th:href="@{/users(page=${page + 1})}"
+           th:disabled="${page + 1 >= totalPages}"
+           class="button-style">
+            Next
+        </a>
+
+    </section>
+</main>
+</body>
+</html>

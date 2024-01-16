@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <link th:href="@{/styles/edit.css}" href="/styles/edit.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="form-container">
+    <form th:method="PATCH" th:action="@{/participation/{id}(id=${participation.getParticipation_id()})}" th:object="${participation}">
+        <div class="form-group">
+            <label for="participation_id">Id</label>
+            <input disabled onfocus="blur()" type="text" th:field="*{participation_id}" id="participation_id" placeholder="id" required/>
+            <label for="player_id">Player ID</label>
+            <input type="text" th:field="*{player_id}" id="player_id" placeholder="Enter id" required/>
+            <label for="game_id">Game ID</label>
+            <input type="text" th:field="*{game_id}" id="game_id" placeholder="Enter id" required/>
+            <label for="is_banned">Is Banned</label>
+            <input type="text" th:field="*{is_banned}" id="is_banned" placeholder="Enter banned" required/>
+            <label for="rank">Rank</label>
+            <input type="text" th:field="*{rank}" id="rank" placeholder="Enter rank" required/>
+            <label for="join_date">Join Date</label>
+            <input disabled onfocus="blur()" type="text" th:field="*{join_date}" id="join_date" placeholder="Enter date" required/>
+            <label for="hours_played">Hours Played</label>
+            <input disabled onfocus="blur()" type="text" th:field="*{hours_played}" id="hours_played" placeholder="Enter hours" required/>
+            <label for="kills">Kills</label>
+            <input type="text" th:field="*{kills}" id="kills" placeholder="Enter kills" required/>
+            <label for="death">Death</label>
+            <input type="text" th:field="*{death}" id="death" placeholder="Enter death" required/>
+        </div>
+        <button type="submit" class="btn">Save Changes</button>
+    </form>
+</div>
+</body>
+</html>

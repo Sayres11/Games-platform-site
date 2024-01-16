@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reset Password</title>
+    <link th:href="@{/styles/auth/login.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="login-container">
+    <h2 class="form-title">Reset Password</h2>
+    <form th:action="@{/reset-password}" method="post" class="login-form">
+        <p>Please enter your email address to reset your password. You will receive an email with instructions.</p>
+        <div class="form-group">
+            <label> Email: <input type="email" name="email" class="form-control" required/> </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Send Reset Link" class="submit-button"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

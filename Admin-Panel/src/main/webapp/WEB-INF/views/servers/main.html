@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servers</title>
+    <link href="/styles/servers/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="logo-container">
+            <img th:src="@{/styles/aaaaa.png}" th:class="logo" th:alt="logo"/>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/servers" class="nav-link">Servers</a></li>
+                <li class="nav-item"><a href="/stats" class="nav-link ">Stats</a></li>
+                <li class="nav-item"><a href="/support" class="nav-link">Support</a></li>
+                <li class="nav-item"><a href="/users" class="nav-link"
+                                        sec:authorize="hasAuthority('ROLE_ADMIN')">Admin</a></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a class="btn btn-login" href="/login" sec:authorize="!isAuthenticated()">Log In</a>
+            <a class="btn btn-login" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+            <a sec:authorize="isAuthenticated()" th:text="'Welcome ' + ${#authentication.name}"> </a>
+            <form action="/logout" method="post" sec:authorize="isAuthenticated()">
+                <button type="submit" class="btn-login">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<div class="content-container">
+    <main class="main-content">
+        <section class="server-section">
+            <h2 class="section-title">Servers</h2>
+            <div class="server-container">
+
+                <article class="server-item">
+                    <h3 class="server-title">CS2 #1</h3>
+                    <p class="server-description">Mode: RETAKE | Players 6/8.</p>
+                    <a href="#" class="server-link">Join Server #1</a>
+                </article>
+
+                <article class="server-item">
+                    <h3 class="server-title">CS2 #2</h3>
+                    <p class="server-description">Mode: DM | Players 8/14.</p>
+                    <a href="#" class="server-link">Join Server #2</a>
+                </article>
+
+                <article class="server-item">
+                    <h3 class="server-title">CS2 #3</h3>
+                    <p class="server-description">Mode: DM | Players 10/14.</p>
+                    <a href="#" class="server-link">Join Server #3</a>
+                </article>
+
+                <article class="server-item">
+                    <h3 class="server-title">CS2 #4</h3>
+                    <p class="server-description">Mode: RETAKE | Players 5/8.</p>
+                    <a href="#" class="server-link">Join Server #4</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <aside class="sidebar">
+        <section class="best-players-section">
+            <h2 class="section-title">Best Players</h2>
+            <ul class="best-players-list">
+                <li class="player">
+                    <span class="player-name">PlayerOne</span>
+                    <span class="player-score">Score: 1500</span>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</div>
+</body>
+</html>

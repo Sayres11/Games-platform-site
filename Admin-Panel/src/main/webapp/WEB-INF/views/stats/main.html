@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Stats</title>
+    <link href="/styles/stats/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="logo-container">
+            <img th:src="@{/styles/aaaaa.png}" th:class="logo" th:alt="logo"/>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/servers" class="nav-link">Servers</a></li>
+                <li class="nav-item"><a href="/stats" class="nav-link active ">Stats</a></li>
+                <li class="nav-item"><a href="/users" class="nav-link">Admin</a></li>
+                <li class="nav-item"><a href="/support" class="nav-link">Support</a></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a class="btn btn-login" href="/login" sec:authorize="!isAuthenticated()">Log In</a>
+            <a class="btn btn-login" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+            <a sec:authorize="isAuthenticated()" th:text="'Welcome ' + ${#authentication.name}"> </a>
+            <form action="/logout" method="post" sec:authorize="isAuthenticated()">
+                <button type="submit" class="btn-login">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="content-container">
+    <main class="main-content">
+        <div class="stats-selection">
+            <select id="gameSelect" class="game-dropdown">
+                <option value="">Select a Game</option>
+                <option value="game1">CS2</option>
+                <option value="game2">LoL</option>
+                <option value="game3">Valorant</option>
+                <option value="game4">DOTA 2</option>
+            </select>
+        </div>
+
+        <section class="best-players-section" id="bestPlayers">
+            <h2 class="section-title">Best Players</h2>
+            <ul class="best-players-list">
+
+            </ul>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #262626;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-header {
+    background-color: #262626;
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-nav {
+    background-color: #262626;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-link {
+    color: #f2f2f2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #e74c3c;
+}
+
+.disabled-button {
+    pointer-events: none;
+    opacity: 0.5;
+
+}
+
+.user-list {
+    margin: 20px;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    border: 2px solid #e74c3c;
+    color: #f2f2f2;
+    padding: 12px;
+    text-align: left;
+}
+
+.users-table th {
+    background-color: #333;
+    color: #f2f2f2;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.users-table tr:hover {
+    background-color: #474646;
+}
+
+.create-new, .edit-btn {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.create-new:hover, .edit-btn:hover {
+    text-decoration: underline;
+}
+
+.delete-btn {
+    color: #c0392b;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button-style {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-style:hover {
+    background-color: #ae382c;
+}
+
+
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+
+    }
+
+    .users-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+}
+@media (max-width: 480px) {
+    .admin-header, .user-list {
+        padding: 10px;
+    }
+    .users-table, .users-table th, .users-table td {
+        font-size: 0.8em;
+    }
+    .delete-form, .edit-btn {
+        display: block;
+        margin-top: 5px;
+    }
+}
