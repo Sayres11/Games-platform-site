@@ -1,0 +1,70 @@
+INSERT INTO Players (player_id, player_name, email, date_of_birth, created_at, last_modified, location, password)
+VALUES (1, 'Sayres', 'mymail@email.com', '2003-12-04', '2024-01-13 10:37:32', '2024-01-13 11:24:55', 'Warsaw, Poland',
+        '123'),
+       (2, 'S22141', 'player2@email.com', '2002-07-02', '2023-12-08 15:43:44', '2024-01-13 22:11:54', 'New York, USA',
+        '321'),
+       (3, 'Git', 'mymail@email.com', '2003-12-04', '2024-01-13 19:00:00', '2024-01-13 11:24:55', 'Toronto, Canada',
+        '123'),
+       (4, 'Tin', 'Tin@email.com', '2000-06-02', '2024-01-10 18:43:44', '2024-01-13 22:11:54', 'Paris, France', '321'),
+       (10, 'Alex', 'user10@example.com', '1995-07-11', '2024-01-15 22:33:27', '2024-01-15 23:33:27', 'Berlin, Germany',
+        'twwqbigv'),
+       (11, 'Jordan', 'user11@example.com', '1984-02-09', '2024-01-15 22:33:27', '2024-01-16 16:33:27', 'London, UK',
+        '23j4ycaa'),
+       (12, 'Riley', 'user12@example.com', '1992-08-12', '2024-01-15 22:33:27', '2024-01-16 06:33:27', 'Madrid, Spain',
+        'j2gkgj8x'),
+       (13, 'Taylor', 'user13@example.com', '1993-03-17', '2024-01-15 22:33:27', '2024-01-16 13:33:27', 'Rome, Italy',
+        'zrelm2jj'),
+       (14, 'Morgan', 'user14@example.com', '2002-11-18', '2024-01-15 22:33:27', '2024-01-16 05:33:27',
+        'Amsterdam, Netherlands', '8p9iob8q'),
+       (15, 'Casey', 'user15@example.com', '2002-09-17', '2024-01-15 22:33:27', '2024-01-16 20:33:27',
+        'Brussels, Belgium', 'p39wzqsb'),
+       (16, 'Drew', 'user16@example.com', '1994-05-30', '2024-01-15 22:33:27', '2024-01-16 20:33:27', 'Vienna, Austria',
+        'wck85l4l'),
+       (17, 'Jesse', 'user17@example.com', '1993-05-12', '2024-01-15 22:33:27', '2024-01-16 22:33:27',
+        'Copenhagen, Denmark', 'fueu4vh6'),
+       (18, 'Quinn', 'user18@example.com', '2000-09-02', '2024-01-15 22:33:27', '2024-01-16 04:33:27',
+        'Dublin, Ireland', '352wbhdu');
+
+INSERT INTO Games (game_id, game_name)
+VALUES (1, 'CS 2'),
+       (2, 'DOTA 2'),
+       (3, 'Valorant'),
+       (4, 'League of Legends');
+
+
+INSERT INTO Game_Participation (Participation_id, player_id, game_id, hours_played, join_date, is_banned, kills, death,
+                                rank)
+VALUES (1, 1, 1, 17, '2023-12-01', 0, 255, 270, 2),
+       (2, 2, 2, 12, '2024-01-01', 0, 1047, 700, 2),
+       (3, 1, 3, 14, '2023-12-25', 0, 754, 523, 3),
+       (4, 2, 4, 11, '2023-11-05', 0, 5, 3, 1),
+       (5, 3, 2, 15, '2023-12-25', 0, 754, 523, 3),
+       (10, 12, 2, 10, '2023-11-19', 1, 866, 963, 5),
+       (11, 12, 1, 16, '2023-11-16', 1, 424, 680, 2),
+       (12, 4, 3, 3, '2023-11-29', 0, 797, 167, 5),
+       (13, 12, 3, 16, '2023-12-17', 0, 480, 44, 3),
+       (14, 14, 4, 6, '2023-11-11', 0, 12, 789, 2),
+       (15, 13, 2, 13, '2023-12-03', 1, 975, 867, 5),
+       (16, 4, 4, 9, '2023-12-13', 0, 392, 802, 5),
+       (17, 3, 2, 14, '2023-12-31', 0, 492, 890, 3),
+       (18, 13, 2, 17, '2023-11-27', 1, 832, 365, 4);
+
+INSERT INTO Linked_Accounts (linked_id, player_id, account_details)
+VALUES (5, 3, 'STEAM: Sayres'),
+       (2, 2, 'BATTLNET: AccountDetails2'),
+       (3, 3, 'STEAM: AccountDetails3'),
+       (4, 4, 'PSN: AccountDetails4');
+
+SELECT *
+FROM Game_Participation AS gp
+WHERE rank = (SELECT MAX(rank) FROM Game_Participation WHERE game_id = gp.game_id);
+
+SELECT *
+FROM (
+         SELECT *,
+                ROW_NUMBER() OVER (PARTITION BY game_id ORDER BY rank DESC, kills DESC) AS rn
+         FROM Game_Participation
+     ) AS ranked
+WHERE ranked.rn = 1;
+
+SELECT * FROM Players LIMIT 5 OFFSET 5

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <link href="/styles/edit.css" rel="stylesheet" th:href="@{/styles/edit.css}" type="text/css"/>
+</head>
+<body>
+<div class="form-container">
+    <form th:action="@{/participation/{id}(id=${participation.getParticipation_id()})}" th:method="PATCH"
+          th:object="${participation}">
+        <div class="form-group">
+            <label for="participation_id">Id</label>
+            <input disabled id="participation_id" onfocus="blur()" placeholder="id" required
+                   th:field="*{participation_id}" type="text"/>
+            <label for="player_id">Player ID</label>
+            <input id="player_id" placeholder="Enter id" required th:field="*{player_id}" type="text"/>
+            <label for="game_id">Game ID</label>
+            <input id="game_id" placeholder="Enter id" required th:field="*{game_id}" type="text"/>
+            <label for="is_banned">Is Banned</label>
+            <input id="is_banned" placeholder="Enter banned" required th:field="*{is_banned}" type="text"/>
+            <label for="rank">Rank</label>
+            <input id="rank" placeholder="Enter rank" required th:field="*{rank}" type="text"/>
+            <label for="join_date">Join Date</label>
+            <input disabled id="join_date" onfocus="blur()" placeholder="Enter date" required th:field="*{join_date}"
+                   type="text"/>
+            <label for="hours_played">Hours Played</label>
+            <input disabled id="hours_played" onfocus="blur()" placeholder="Enter hours" required
+                   th:field="*{hours_played}" type="text"/>
+            <label for="kills">Kills</label>
+            <input id="kills" placeholder="Enter kills" required th:field="*{kills}" type="text"/>
+            <label for="death">Death</label>
+            <input id="death" placeholder="Enter death" required th:field="*{death}" type="text"/>
+        </div>
+        <button class="btn" type="submit">Save Changes</button>
+    </form>
+</div>
+</body>
+</html>

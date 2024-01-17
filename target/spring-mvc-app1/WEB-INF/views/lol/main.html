@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Lol</title>
+    <link href="/styles/lol/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="logo-container">
+            <img th:alt="logo" th:class="logo" th:src="@{/styles/aaaaa.png}"/>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/servers">Servers</a></li>
+                <li class="nav-item"><a class="nav-link " href="/stats">Stats</a></li>
+                <li class="nav-item"><a class="nav-link" href="/support">Support</a></li>
+                <li class="nav-item"><a class="nav-link" href="/users"
+                                        sec:authorize="hasAuthority('ROLE_ADMIN')">Admin</a></li>
+                <li sec:authentication="name"></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a class="btn btn-login" href="/login" sec:authorize="!isAuthenticated()">Log In</a>
+            <a class="btn btn-login" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+            <a sec:authorize="isAuthenticated()" th:text="'Welcome ' + ${#authentication.name}"> </a>
+            <form action="/logout" method="post" sec:authorize="isAuthenticated()">
+                <button class="btn-login" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="content-container">
+    <main class="main-content">
+
+        <div class="game-selection">
+
+        </div>
+        <section class="news-section">
+            <h2 class="section-title">LOL Latest News</h2>
+            <div class="news-container">
+
+            </div>
+        </section>
+    </main>
+    <aside class="sidebar">
+        <section class="best-players-section">
+            <h2 class="section-title">Best Players</h2>
+            <ul class="best-players-list">
+                <li class="player" th:each="players : ${player}">
+                    <span class="player-name" th:text="${players.getPlayer_name()}"></span>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</div>
+</body>
+</html>

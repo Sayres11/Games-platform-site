@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Participant Management</title>
+    <link href="/styles/participation/index.css" rel="stylesheet" th:href="@{/styles/participation/index.css}"
+          type="text/css"/>
+</head>
+<body>
+<header class="admin-header">
+    <h1>Admin Panel</h1>
+</header>
+<nav class="admin-nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="/">Main</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users">Players</a></li>
+        <li class="nav-item"><a class="nav-link" href="/games">Games</a></li>
+        <li class="nav-item"><a class="nav-link" href="/participation">Participation</a></li>
+
+    </ul>
+</nav>
+<main>
+    <section class="user-list">
+        <a class="create-new" th:href="@{/participation/new}">Create New Participation</a>
+        <table class="users-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Player ID</th>
+                <th>Game ID</th>
+                <th>Is Banned</th>
+                <th>Rank</th>
+                <th>Join Date</th>
+                <th>Hours Played</th>
+                <th>Kills</th>
+                <th>Death</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody th:each="participation : ${participation}">
+            <tr>
+                <td th:text="${participation.getParticipation_id()}"></td>
+                <td th:text="${participation.getPlayer_id()}"></td>
+                <td th:text="${participation.getGame_id()}"></td>
+                <td th:text="${participation.isIs_banned()}"></td>
+                <td th:text="${participation.getRank()}"></td>
+                <td th:text="${participation.getJoin_date()}"></td>
+                <td th:text="${participation.getHours_played()}"></td>
+                <td th:text="${participation.getKills()}"></td>
+                <td th:text="${participation.getDeath()}"></td>
+                <td>
+                    <a class="button-style" th:href="@{/participation/{id}(id=${participation.getParticipation_id()})}">Edit</a>
+                    |
+                    <a class="button-style" th:href="@{/detailed_info/{id}(id=${participation.getParticipation_id()})}">More</a>
+                    |
+                    <form method="post" onsubmit="return confirm('Are you sure?');"
+                          th:action="@{/participation/{id}(id=${participation.getParticipation_id()})}">
+                        <input name="_method" type="hidden" value="delete"/>
+                        <button class="button-style" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+</body>
+</html>
+

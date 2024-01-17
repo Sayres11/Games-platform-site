@@ -1,0 +1,23 @@
+<!-- users/list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User List</title>
+</head>
+<body>
+<div>
+
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.player_name}"></span>
+        </li>
+    </ul>
+</div>
+<div>
+    <a th:href="@{/users/users(page=${page+1})}">
+        Next
+    </a>
+</div>
+</body>
+</html>

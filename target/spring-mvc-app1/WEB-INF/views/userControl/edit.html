@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <link rel="stylesheet" th:href="@{/styles/edit.css}" type="text/css"/>
+</head>
+<body>
+<div class="form-container">
+    <form th:action="@{/users/{id}(id=${user.getPlayer_id()})}" th:method="PATCH" th:object="${user}">
+        <div class="form-group">
+            <label for="player_id">Id</label>
+            <input disabled id="player_id" onfocus="blur()" placeholder="id" th:field="*{player_id}" type="text"/>
+
+            <label for="player_name">Username</label>
+            <input id="player_name" placeholder="Enter name" required th:field="*{player_name}" type="text"/>
+            <span class="error" th:errors="*{player_name}" th:if="${#fields.hasErrors('player_name')}"></span>
+
+            <label for="email">Email</label>
+            <input id="email" placeholder="Enter email" required th:field="*{email}" type="email"/>
+            <span class="error" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
+            <label for="date_of_birth">Birth date</label>
+            <input id="date_of_birth" placeholder="Enter birth date" required th:field="*{date_of_birth}" type="date"/>
+            <span class="error" th:errors="*{date_of_birth}" th:if="${#fields.hasErrors('date_of_birth')}"></span>
+            <button class="btn" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

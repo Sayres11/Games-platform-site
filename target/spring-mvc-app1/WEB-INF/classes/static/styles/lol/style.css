@@ -1,0 +1,223 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+
+.header {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 50px;
+}
+
+.nav {
+    display: flex;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    background-color: #40e4e8;
+    color: #fff;
+}
+
+.nav-link img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+
+.nav-link.active {
+    border-bottom: 3px solid #40e4e8;
+    padding-bottom: 7px;
+}
+
+.user-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-login {
+    background-color: #40e4e8;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #40e4e8;
+}
+
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.main-content,
+.sidebar {
+    background-color: #262626;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.news-section .section-title,
+.best-players-section .section-title {
+    border-bottom: 2px solid #40e4e8;
+    color: #fff;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.sidebar {
+    width: 300px;
+}
+
+.best-players-list {
+    list-style-type: none;
+}
+
+.player-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.player-score {
+    color: #e0e0e0;
+}
+
+
+@media (max-width: 1024px) {
+    .content-container {
+        flex-direction: column;
+    }
+
+    .main-content,
+    .sidebar {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.news-item {
+    margin-bottom: 1.5rem;
+}
+
+.news-title {
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.news-summary {
+    margin-bottom: .5rem;
+    color: #ccc;
+}
+
+.news-link {
+    color: #40e4e8;
+    text-decoration: none;
+}
+
+.news-link:hover {
+    text-decoration: underline;
+}
+
+.game-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.game-button {
+    padding: 10px;
+    border: 2px solid #40e4e8;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-button:focus,
+.game-button:hover {
+    border-color: #fff;
+    background-color: #40e4e8;
+}
+
+.game-icon {
+    width: 50px;
+    height: auto;
+}
+
+
+img.game-icon {
+    width: 120px;
+    height: 70px;
+}

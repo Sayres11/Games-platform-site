@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Game</title>
+    <link href="/styles/edit.css" rel="stylesheet" th:href="@{/styles/edit.css}" type="text/css"/>
+</head>
+<body>
+<div class="form-container">
+    <form th:action="@{/games/{id}(id=${game.getGame_id()})}" th:method="PATCH" th:object="${game}">
+        <div class="form-group">
+            <label for="game_id">Id</label>
+            <input disabled id="game_id" onfocus="blur()" placeholder="id" th:field="*{game_id}" type="text"/>
+            <label for="Name">name</label>
+            <input id="Name" placeholder="Enter name" required th:field="*{game_name}" type="text"/>
+        </div>
+        <button class="btn" type="submit">Save Changes</button>
+    </form>
+</div>
+</body>
+</html>

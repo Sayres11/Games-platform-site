@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detailed Information</title>
+    <link href="/styles/detailed_info/style.css" rel="stylesheet" th:href="@{/styles/detailed_info/style.css}"
+          type="text/css"/>
+</head>
+<body>
+<h1>Detailed Information</h1>
+<h2>Participation Details</h2>
+<p>Participation ID: <span th:text="${participation.getParticipation_id()}"></span></p>
+<!-- Add other Participation details here -->
+
+<h2>User Details <a class="button" th:href="@{/users/{id}(id=${user.getPlayer_id()})}">Edit User</a></h2>
+<p>User ID: <span th:text="${user.getPlayer_id()}"></span></p>
+<p>User Name: <span th:text="${user.getPlayer_name()}"></span></p>
+<p>Created: <span th:text="${user.getCreated_at()}"></span></p>
+<p>Last Modified: <span th:text="${user.getLast_modified()}"></span></p>
+<p>Location: <span th:text="${user.getLocation()}"></span></p>
+<ul th:each="linkedAccount : ${linkedAccount}">
+    <li>Linked accounts: <span th:text="${linkedAccount.getAccount_details()}"></span></li>
+</ul><!-- Add other User details here -->
+<h2><span th:text="${gameMap.get(participation.getGame_id()).getGame_name()}"></span> <a
+        class="button" th:href="@{/participation/{id}(id=${participation.getParticipation_id()})}">Edit User Game
+    info</a></h2>
+<ul>
+    <li>
+        <p>Game ID: <span th:text="${gameMap.get(participation.getGame_id()).getGame_id()}"></span></p>
+        <p>Join Date: <span th:text="${participation.getJoin_date()}"></span></p>
+        <p>Hours Played: <span th:text="${participation.getHours_played()}"></span></p>
+        <p>Kills: <span th:text="${participation.getKills()}"></span></p>
+        <p>Death: <span th:text="${participation.getDeath()}"></span></p>
+        <p>Rank: <span th:text="${participation.getRank()}"></span></p>
+        <p>Is Banned: <span th:text="${participation.isIs_banned()}"></span></p>
+    </li>
+</ul>
+
+<h2>Other Participations</h2>
+<ul th:each="participation : ${participations}">
+    <li th:if="${participation.getParticipation_id() != id}">
+        <a th:href="@{/detailed_info/{id}(id=${participation.getParticipation_id()})}">
+            <p>Game ID: <span th:text="${gameMap.get(participation.getGame_id()).getGame_id()}"></span></p>
+            <p>Game Name: <span th:text="${gameMap.get(participation.getGame_id()).getGame_name()}"></span></p>
+        </a>
+    </li>
+</ul>
+
+</body>
+</html>

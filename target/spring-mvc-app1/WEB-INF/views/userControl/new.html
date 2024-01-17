@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/styles/participation/new.css" rel="stylesheet" th:href="@{/styles/participation/new.css}"
+          type="text/css"/>
+    <title>new user</title>
+</head>
+<body>
+<form th:action="@{/users}" th:method="POST" th:object="${user}">
+    <label for="player_name">Enter name:</label>
+    <input id="player_name" required th:field="*{player_name}" type="text"/>
+    <p style="color:red" th:errors="*{player_name}" th:if="${#fields.hasErrors('player_name')}">Incorrect name</p>
+    <label for="email">Enter email:</label>
+    <input id="email" required th:field="*{email}" type="email"/>
+    <p style="color:red" th:errors="*{email}" th:if="${#fields.hasErrors('email')}">Incorrect email</p>
+    <label for="date_of_birth">Enter Birth date:</label>
+    <input id="date_of_birth" required th:field="*{date_of_birth}" type="date"/>
+    <p style="color:red" th:errors="*{date_of_birth}" th:if="${#fields.hasErrors('date_of_birth')}">Incorrect date</p>
+    <input id="password" th:field="*{password}" th:value="432452" type="hidden"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+</body>
+</html>
